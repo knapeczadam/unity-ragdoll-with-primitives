@@ -306,6 +306,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &603733232 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1723513933949774, guid: 851deeb3e75a9c74a96d9929d6a8d0bd,
+    type: 2}
+  m_PrefabInternal: {fileID: 102250696}
 --- !u!1 &1223084320
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,8 +343,10 @@ MonoBehaviour:
   MaxSize: 1
   Stretch: 0.5
   PlaneScale: 2
+  Diameter: 0
   Bottom: {fileID: 77535103}
   Top: {fileID: 2077091909}
+  _ragDoll: {fileID: 603733232}
 --- !u!4 &1223084322
 Transform:
   m_ObjectHideFlags: 0
@@ -527,7 +534,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2077091909}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

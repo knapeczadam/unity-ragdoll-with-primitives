@@ -10,8 +10,13 @@ public class GameController : MonoBehaviour
     public float Stretch; // horizontal
     public int PlaneScale;
     
+    public float Diameter;
+
     public GameObject Bottom;
     public GameObject Top;
+
+    [SerializeField]
+    private GameObject _ragDoll;
 
     void Awake()
     {
@@ -31,6 +36,12 @@ public class GameController : MonoBehaviour
     {
         Bottom.transform.localScale = Vector3.one * PlaneScale;
         Top.transform.localScale = Vector3.one * PlaneScale;
+
+        Diameter = Bottom.GetComponent<Renderer>().bounds.size.x;
+        
+        SetTopPosition();
+        
+        _ragDoll.GetComponent<Ragdoll>().SetRandomPosition();
         
         CreateObstacles();
     }
@@ -40,20 +51,25 @@ public class GameController : MonoBehaviour
     {
         
     }
+
+    void SetTopPosition()
+    {
+        Top.transform.position = new Vector3(Bottom.transform.position.x, Diameter, Bottom.transform.position.z);
+    }
     
     public void CreateObstacles()
     {
-        float radius = Bottom.GetComponent<Renderer>().bounds.size.x / 2;
+        float radius = Diameter / 2;
         
         for (int i = 0; i < Obstacles; i++)
         {
             Vector3 spherePos = Random.insideUnitSphere * radius;
             
             GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            
-            float x = spherePos.x * Stretch;
+
+            float x = spherePos.x * Stretch + Bottom.transform.position.x;
             float y = spherePos.y + Mathf.Abs((Bottom.transform.position.y - Top.transform.position.y) / 2);
-            float z = spherePos.z * Stretch;
+            float z = spherePos.z * Stretch + Bottom.transform.position.z;
             
             sphere.transform.position = new Vector3(x, y, z);
             sphere.transform.localScale = Vector3.one * Random.Range(MinSize, MaxSize);
