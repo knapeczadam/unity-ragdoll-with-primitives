@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour
 
     void SetTopPosition()
     {
-        Top.transform.position = new Vector3(Bottom.transform.position.x, Diameter, Bottom.transform.position.z);
+        Top.transform.position = new Vector3(Bottom.transform.position.x, Bottom.transform.position.y + Diameter, Bottom.transform.position.z);
     }
     
     public void CreateObstacles()
@@ -68,7 +68,7 @@ public class GameController : MonoBehaviour
             GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 
             float x = spherePos.x * Stretch + Bottom.transform.position.x;
-            float y = spherePos.y + Mathf.Abs((Bottom.transform.position.y - Top.transform.position.y) / 2);
+            float y = spherePos.y + Mathf.Abs((Bottom.transform.position.y - Top.transform.position.y) / 2) + Bottom.transform.position.y;
             float z = spherePos.z * Stretch + Bottom.transform.position.z;
             
             sphere.transform.position = new Vector3(x, y, z);
